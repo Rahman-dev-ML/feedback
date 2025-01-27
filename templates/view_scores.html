@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Submitted Scores</title>
+</head>
+<body>
+    <h1>User Submitted Scores</h1>
+    {% if scores %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Tweet ID</th>
+                <th>Tweet Text</th>
+                <th>User Severity Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in scores %}
+            <tr>
+                <td>{{ score["Name"] }}</td>
+                <td>{{ score["Tweet ID"] }}</td>
+                <td>{{ score["Tweet Text"] }}</td>
+                <td>{{ score["User Severity Score"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No scores submitted yet.</p>
+    {% endif %}
+</body>
+</html>
 

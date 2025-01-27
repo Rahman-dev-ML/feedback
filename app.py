@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import pandas as pd
+import os  # Import os to read environment variables
 
 app = Flask(__name__)
 
@@ -13,7 +14,6 @@ if "text" not in tweets_df.columns:
 
 # Initialize an empty list to store user inputs
 user_scores = []
-
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -35,6 +35,7 @@ def index():
 
     return render_template("index.html", tweets=tweets_with_indices)
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Use the PORT environment variable set by Render, or default to 5000
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
